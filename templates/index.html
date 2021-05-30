@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django REST API</title>
+    <style>
+        body {
+            margin: 20px 50px;
+        }
+
+        table, td, th {
+            border: 1px solid black;
+            text-align: justify;
+            padding: 10px;
+        }
+
+        table {
+            width: 600px;
+            border-collapse: collapse;  
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Supportted Endpoints</h1>
+    <ul>
+        <li>
+            <h2><i>/api/stocks/</i></h2>
+        </li>
+        <li>
+            <h2><i>/api/stocks/&lt;id&gt;/</i></h2>
+        </li>
+    </ul>
+
+    <h1>Supportted HTTP Methods</h1>
+    <table>
+        <tr>
+            <th>Method</th>
+            <th>Endpoint</th>
+            <th>Paramters</th>
+            <th>Action</th>
+        </tr>
+
+        <tr>
+            <td>GET</td>
+            <td>/api/stocks/</td>
+            <td>None</td>
+            <td>get all stocks</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/api/stocks/</td>
+            <td>Symbol, Name</td>
+            <td>insert a new stock</td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/api/stocks/&lt;id&gt;/</td>
+            <td>None</td>
+            <td>get a particular stock by <b>id</b></td>
+        </tr>
+        <tr>
+            <td>PUT</td>
+            <td>/api/stocks/&lt;id&gt;/</td>
+            <td>Symbol, Name</td>
+            <td>update a stock by <b>id</b></td>
+        </tr>
+        <tr>
+            <td>DELETE</td>
+            <td>/api/stocks/&lt;id&gt;/</td>
+            <td>None</td>
+            <td>delete a particular stock by <b>id</b></td>
+        </tr>
+    </table>
+    
+    <h1>Examples</h1>
+    <ol>
+        <li>
+            <h3>GET <i>/api/stocks/</i></h3>
+        </li>
+        <li>
+            <h3>GET <i>/api/stocks/3/</i></h3>
+        </li>
+        <li>
+            <h3>POST <i>/api/stocks/</i></h3> 
+            <p>Request Body: {'symbol': 'FB', 'name': 'Facebook Inc'}</p>
+        </li>
+        <li>
+            <h3>PUT <i>/api/stocks/2/</i></h3>
+            <p>Request Body: {'symbol': 'TWTR', 'name': 'Twitter Inc'}</p>
+        </li>
+        <li>
+            <h3>DELETE <i>/api/stocks/3/</i></h3>
+        </li>
+    </ol>
+</body>
+</html>
