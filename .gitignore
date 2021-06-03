@@ -1,3 +1,4 @@
+.env
 .vscode/
 restapi/__pycache__
 stocks/__pycache__
