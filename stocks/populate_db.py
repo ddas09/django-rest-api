@@ -12,7 +12,7 @@ API_TOKEN = os.getenv("IEX_TOKEN")
 
 def getAllStocks():
     # Get list of all stocks
-    endpoint_url = "ref-data/symbols?filter=symbol,name,isEnabled,type&token="
+    endpoint_url = "ref-data/symbols?filter=symbol,name&token="
     stocks = sendApiRequest(endpoint_url)
     return stocks
                     
@@ -36,17 +36,15 @@ if __name__ == '__main__':
     cursor = connection.cursor()
     
     stocks = getAllStocks()
-    allowed_types = ['cs', 'ps']
     query = "INSERT INTO stocks(symbol, name) VALUES(?, ?)"
 
     # Insert only allowed stocks
     for stock in stocks:
-        if stock['type'] in allowed_types and stock['isEnabled']:
-            try:
-                cursor.execute(query, [stock['symbol'], stock['name']])
-                print(f"Inserted a new stock: {stock['symbol']}, {stock['name']}.")
-            except Exception:
-                continue
+        try:
+            cursor.execute(query, [stock['symbol'], stock['name']])
+            print(f"Inserted a new stock: {stock['symbol']}, {stock['name']}.")
+        except Exception:
+            continue
 
     connection.commit()
     connection.close()

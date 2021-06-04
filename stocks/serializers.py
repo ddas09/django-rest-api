@@ -5,4 +5,4 @@ from .models import Stock
 class StockSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stock
-        fields = ('id', 'symbol', 'name')
+        fields = '__all__'

@@ -1,9 +1,14 @@
-from django.shortcuts import render
 from django.http.response import JsonResponse
+from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework import status
 from .serializers import StockSerializer
 from .models import Stock
+from django.core.cache import cache
+from django.conf import settings
+
+# Cache timeout
+CACHE_TTL = getattr(settings, 'CACHE_TTL')
 
 
 def index(request):
@@ -14,11 +19,19 @@ def index(request):
 @api_view(['GET', 'POST'])
 def allStocks(request):
     if request.method == 'GET':
-        stocks = Stock.objects.all()
-        stocks_serializer = StockSerializer(stocks, many=True)
-        
-        # safe=False allows non-dict objects to be serialized
-        return JsonResponse(stocks_serializer.data, safe=False)
+        if 'all_stocks' in cache:
+            print('Serving from cache...')
+            stocks = cache.get('all_stocks')
+            # safe=False allows non-dict objects to be serialized
+            return JsonResponse(stocks, safe=False)
+            
+        else:    
+            stocks = Stock.objects.all()
+            stocks_serializer = StockSerializer(stocks, many=True)
+            print('Data loaded from db...')
+            # store data in cache
+            cache.set('all_stocks', stocks_serializer.data, timeout=CACHE_TTL)
+            return JsonResponse(stocks_serializer.data, safe=False)
 
     elif request.method == 'POST':
         stock_serializer = StockSerializer(data=request.data)
@@ -40,7 +53,7 @@ def stock(request, id):
     if request.method == 'GET':
         stock_serializer = StockSerializer(stock)
         return JsonResponse(stock_serializer.data)
-
+    
     elif request.method == 'PUT':
         stock_serializer = StockSerializer(stock, data=request.data)
         if stock_serializer.is_valid():
