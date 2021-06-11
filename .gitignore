@@ -1,5 +1,6 @@
 .env
 .vscode/
+dump.rdb
 restapi/__pycache__
 stocks/__pycache__
 stocks/migrations/__pycache__

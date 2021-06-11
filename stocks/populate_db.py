@@ -37,8 +37,6 @@ if __name__ == '__main__':
     
     stocks = getAllStocks()
     query = "INSERT INTO stocks(symbol, name) VALUES(?, ?)"
-
-    # Insert only allowed stocks
     for stock in stocks:
         try:
             cursor.execute(query, [stock['symbol'], stock['name']])
