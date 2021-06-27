@@ -4,6 +4,7 @@ from django.db import models
 class Stock(models.Model):
     symbol = models.TextField(unique=True)
     name = models.TextField(unique=True)
+    price = models.FloatField() 
 
     class Meta:
         managed = False
