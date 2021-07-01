@@ -25,7 +25,7 @@ def allStocks(request):
             stock_serializer.save()
             return JsonResponse(stock_serializer.data)
         else:
-            return JsonResponse(stock_serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
+            return JsonResponse({"message": "Stock already exists in database"}, status=status.HTTP_400_BAD_REQUEST)    
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -46,7 +46,7 @@ def stock(request, id):
             stock_serializer.save()
             return JsonResponse(stock_serializer.data)    
         else:
-            return JsonResponse(stock_serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
+            return JsonResponse({"message": "Couldn't update stock with provided details"}, status=status.HTTP_400_BAD_REQUEST)    
     
     elif request.method == 'DELETE':
         stock.delete()
