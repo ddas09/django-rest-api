@@ -7,17 +7,18 @@
     <title>Django REST API</title>
     <style>
         body {
-            margin: 20px 50px;
+            margin: 20px;
         }
 
         table, td, th {
             border: 1px solid black;
-            text-align: justify;
+            text-align: left;
             padding: 10px;
         }
 
         table {
-            width: 600px;
+            width: 90%;
+            max-width: 700px;
             border-collapse: collapse;  
         }
     </style>
@@ -47,31 +48,31 @@
             <td>GET</td>
             <td>/api/stocks/</td>
             <td>None</td>
-            <td>get all stocks</td>
+            <td>Get all stocks</td>
         </tr>
         <tr>
             <td>POST</td>
             <td>/api/stocks/</td>
-            <td>Symbol, Name</td>
-            <td>insert a new stock</td>
+            <td>Symbol, Name, Price</td>
+            <td>Insert a new stock</td>
         </tr>
         <tr>
             <td>GET</td>
             <td>/api/stocks/&lt;id&gt;/</td>
             <td>None</td>
-            <td>get a particular stock by <b>id</b></td>
+            <td>Get a particular stock by <b>id</b></td>
         </tr>
         <tr>
             <td>PUT</td>
             <td>/api/stocks/&lt;id&gt;/</td>
-            <td>Symbol, Name</td>
-            <td>update a stock by <b>id</b></td>
+            <td>Symbol, Name, Price</td>
+            <td>Update a stock by <b>id</b></td>
         </tr>
         <tr>
             <td>DELETE</td>
             <td>/api/stocks/&lt;id&gt;/</td>
             <td>None</td>
-            <td>delete a particular stock by <b>id</b></td>
+            <td>Delete a particular stock by <b>id</b></td>
         </tr>
     </table>
     
